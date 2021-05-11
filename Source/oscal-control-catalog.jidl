@@ -1,0 +1,37 @@
+package: "http://csrc.nist.gov/ns/oscal/1.0/control-catalog"
+exports: ["Catalog"]
+config: {"$FieldName": "^[a-z][-A-Za-z0-9]{0,31}$"}
+
+Catalog = Record    // JSON schema has redundant top-level object with one property
+  1 uuid UUID
+  2 metadata Metadata
+  3 params Parameter [0..*]
+  4 controls Control [0..*]
+  5 groups Group [0..*]
+  6 back-matter BackMatter optional
+
+Metadata = Map
+  1 title Title
+  2 last-modified DateTime
+  3 version Version
+  4 oscal-version OscalVersion
+  5 published Published optional
+  6 revisions Revision [0..*]
+  7 document-ids DocumentID [0..*]
+  8 props Property [0..*]
+  9 links Link [0..*]
+ 10 roles Role [0..*]
+ 11 locations Location [0..*]
+ 12 parties Party [0..*]
+ 13 responsible-parties ResponsibleParty optional  // & not string ???
+ 14 remarks Remarks optional
+
+OscalVersion = String
+
+Remarks = String
+
+Title = String
+
+Version = String
+
+UUID = Binary{16..16} /x
